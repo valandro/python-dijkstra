@@ -34,6 +34,27 @@ Examples:
 6 5 5
 ```
 
+**Graph 2**
+
+![Graph image](/img/graph2.png)
+
+**graph2.wdg**
+
+```
+(origin) (destiny)
+1 6
+(node) (node) (distance)
+1 2 5
+1 3 2
+2 4 4
+2 5 2
+3 2 8
+3 5 7
+4 6 3
+4 5 6
+5 6 1
+```
+
 
 ### License
 MIT License. [Click here for more information.](LICENSE)

@@ -46,6 +46,7 @@ file.close()
 
 # Constants for matrix approach
 minimun = INFINITY
+old_node = origin
 current_node = origin
 col = 1
 matrix = [[INFINITY for x in range(nodes)] for y in range(nodes)]
@@ -65,9 +66,10 @@ for i in range(len(graph)):
                     col = int(n[1])
             else:
                 # If isn't the origin node, then look back to see if the current cost is smaller than the previous
-                if matrix[int(n[0]) - 1][int(n[1])] < value:
+                print("--- ",n[0], n[1], matrix[int(n[0]) - 1][int(n[1])], value)
+                if matrix[old_node][int(n[1])] < value:
                     # If it is, than keep the old cost
-                    matrix[int(n[0])][int(n[1])] = matrix[int(n[0]) - 1][int(n[1])]
+                    matrix[int(n[0])][int(n[1])] = matrix[old_node][int(n[1])]
                     if matrix[int(n[0])][int(n[1])] < minimun:
                         minimun = matrix[int(n[0])][int(n[1])]
                         col = int(n[1])
@@ -78,11 +80,13 @@ for i in range(len(graph)):
                         minimun = matrix[int(n[0])][int(n[1])]  
                         col = int(n[1])
     # Set new current node
+    old_node = current_node
     current_node = col
     cost = minimun
     if current_node == destiny:
         break;
     minimun = INFINITY
 
+print(matrix)
 print("-- Minimun Cost --")
 print(cost)
