@@ -40,21 +40,31 @@ for line in file:
 file.close()
 minimun = INFINITY
 current_node = origin
-col = 0
+col = 1
 matrix = [[INFINITY for x in range(nodes)] for y in range(nodes)]
-
+cost = 0
 for i in range(len(graph)):
     for node in range(len(graph)):
         n = list(graph[node].keys())[0].split("&")
         if int(n[0]) == current_node: 
+            # Set origin costs
             if current_node == origin:
                 matrix[origin][origin] = 0
-            matrix[int(n[0])][int(n[1])] = int(list(graph[node].values())[0])
-            if int(list(graph[node].values())[0]) < minimun:
-                minimun = int(list(graph[node].values())[0])
-                col = int(n[1])
-                print(minimun, col)
-
-    current_node = i + 1
-    print(current_node)
+                matrix[int(n[0])][int(n[1])] = int(list(graph[node].values())[0])
+                if int(list(graph[node].values())[0]) < minimun:
+                    minimun = int(list(graph[node].values())[0])
+                    col = int(n[1])
+            else:
+                print(n[0], n[1], int(list(graph[node].values())[0]), matrix[int(n[0]) - 1][int(n[1])], cost)
+                if int(list(graph[node].values())[0]) > matrix[int(n[0]) - 1][int(n[1])]:
+                    matrix[int(n[0])][int(n[1])] = matrix[int(n[0]) - 1][int(n[1])]
+                    minimun = matrix[int(n[0]) - 1][int(n[1])]
+                    col = int(n[1])
+                else:
+                    print("ae")
+                    matrix[int(n[0])][int(n[1])] = cost + int(list(graph[node].values())[0])
+    current_node = col
+    cost += minimun
+    print("cost", cost, minimun)
+    minimun = INFINITY + 1
 print(matrix)
