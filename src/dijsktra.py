@@ -37,6 +37,7 @@ nodes = greatest_node + 1
 minimun = INFINITY
 old_node = origin
 current_node = origin
+minimun_path = []
 col = 1
 matrix = [[INFINITY for x in range(nodes)] for y in range(nodes)]
 cost = 0
@@ -55,23 +56,24 @@ for i in range(len(graph)):
                     col = int(n[1])
             else:
                 # If isn't the origin node, then look back to see if the current cost is smaller than the previous
-                if matrix[old_node][int(n[1])] < value:
-                    # If it is, than keep the old cost
-                    matrix[int(n[0])][int(n[1])] = matrix[old_node][int(n[1])]
-                    if matrix[int(n[0])][int(n[1])] < minimun:
-                        minimun = matrix[int(n[0])][int(n[1])]
-                        col = int(n[1])
-                else:
-                    # If isn't, than set the new cost using the actual cost to current node
-                     matrix[int(n[0])][int(n[1])] = cost + value 
-                     if matrix[int(n[0])][int(n[1])] < minimun:
-                        minimun = matrix[int(n[0])][int(n[1])]  
-                        col = int(n[1])
+                for old_minimun_node in minimun_path:
+                    if matrix[old_minimun_node][int(n[1])] <= cost:
+                        # If it is, than keep the old cost
+                        matrix[int(n[0])][int(n[1])] = matrix[old_minimun_node][int(n[1])]
+                        if matrix[int(n[0])][int(n[1])] < minimun:
+                            minimun = matrix[int(n[0])][int(n[1])]
+                            col = int(n[1])
+                    else:
+                        # If isn't, than set the new cost using the actual cost to current node
+                         matrix[int(n[0])][int(n[1])] = cost + value 
+                         if matrix[int(n[0])][int(n[1])] < minimun:
+                            minimun = matrix[int(n[0])][int(n[1])]  
+                            col = int(n[1])
     # Set new current node
     old_node = current_node
+    minimun_path.append(current_node)
     current_node = col
     cost = minimun
-    print("current node", current_node, "old node", old_node, "col", col, "destiny", destiny, "cost", cost)
     if current_node == destiny:
         break;
     minimun = INFINITY
