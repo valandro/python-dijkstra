@@ -2,10 +2,16 @@ from sys import argv
 import re
 # Infinity cost constant
 INFINITY = 99999
+graph = []
 
+# Open the file again
 file = open(argv[1], "r")
-# The greatest node is equal to number of nodes - 1
+
+# Constants for file manipulation
 greatest_node = -1
+first_line = True
+origin = 0
+destiny = 0
 for line in file:
     # Reading only lines there are not comments
     if not re.match("//", line):
@@ -14,25 +20,7 @@ for line in file:
         if int(info[0]) > greatest_node:
             greatest_node = int(info[0])
         if int(info[1]) > greatest_node:
-            greatest_node = int(info[1])            
-
-file.close()
-
-# Total number of nodes
-nodes = greatest_node + 1
-graph = []
-
-# Open the file again
-file = open(argv[1], "r")
-
-# Constants for file manipulation
-first_line = True
-origin = 0
-destiny = 0
-for line in file:
-    # Reading only lines there are not comments
-    if not re.match("//", line):
-        info = line.split(" ")
+            greatest_node = int(info[1])     
         if first_line:
             origin = int(info[0])
             destiny = int(info[1])
@@ -43,7 +31,8 @@ for line in file:
             # Add JSON to graph
             graph.append(arrest)
 file.close()
-
+# Total number of nodes
+nodes = greatest_node + 1
 # Constants for matrix approach
 minimun = INFINITY
 old_node = origin
@@ -66,7 +55,6 @@ for i in range(len(graph)):
                     col = int(n[1])
             else:
                 # If isn't the origin node, then look back to see if the current cost is smaller than the previous
-                print("--- ",n[0], n[1], matrix[int(n[0]) - 1][int(n[1])], value)
                 if matrix[old_node][int(n[1])] < value:
                     # If it is, than keep the old cost
                     matrix[int(n[0])][int(n[1])] = matrix[old_node][int(n[1])]
@@ -87,6 +75,8 @@ for i in range(len(graph)):
         break;
     minimun = INFINITY
 
-print(matrix)
+print("-- Matrix --")
+for i in range(len(matrix)):
+    print(matrix[i])
 print("-- Minimun Cost --")
 print(cost)
