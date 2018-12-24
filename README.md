@@ -17,8 +17,6 @@ Examples:
 
 ![Graph image](/img/graph1.png)
 
-**graph1.wdg**
-
 ```
 (origin) (destiny)
 1 5
@@ -38,8 +36,6 @@ Examples:
 
 ![Graph image](/img/graph2.png)
 
-**graph2.wdg**
-
 ```
 (origin) (destiny)
 1 6
@@ -55,6 +51,26 @@ Examples:
 5 6 1
 ```
 
+**Graph 3**
+
+![Graph image](/img/graph3.png)
+
+```
+(origin) (destiny)
+1 8
+(node) (node) (distance)
+1 2 2
+1 4 4
+2 4 1
+2 3 6
+3 7 5
+4 6 9
+4 5 11
+5 3 2
+5 8 7
+6 8 2
+7 8 3
+```
 
 ### License
 MIT License. [Click here for more information.](LICENSE)

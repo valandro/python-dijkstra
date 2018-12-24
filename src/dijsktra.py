@@ -71,6 +71,7 @@ for i in range(len(graph)):
     old_node = current_node
     current_node = col
     cost = minimun
+    print("current node", current_node, "old node", old_node, "col", col, "destiny", destiny, "cost", cost)
     if current_node == destiny:
         break;
     minimun = INFINITY
