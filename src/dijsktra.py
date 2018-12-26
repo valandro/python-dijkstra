@@ -54,10 +54,16 @@ for i in range(len(graph)):
                 if value < minimun:
                     minimun = value
                     col = int(n[1])
+                if destiny == int(n[1]):
+                    minimun = matrix[int(n[0])][int(n[1])]  
+                    col = int(n[1])
+                    break;
             else:
                 # If isn't the origin node, then look back to see if the current cost is smaller than the previous
+                print("-- entrou else --", cost , value ,'n', n[1], value, minimun_path)
                 for old_minimun_node in minimun_path:
                     if matrix[old_minimun_node][int(n[1])] <= cost:
+                        print("-- entrou --", old_minimun_node)
                         # If it is, than keep the old cost
                         matrix[int(n[0])][int(n[1])] = matrix[old_minimun_node][int(n[1])]
                         if matrix[int(n[0])][int(n[1])] < minimun:
@@ -65,10 +71,14 @@ for i in range(len(graph)):
                             col = int(n[1])
                     else:
                         # If isn't, than set the new cost using the actual cost to current node
-                         matrix[int(n[0])][int(n[1])] = cost + value 
-                         if matrix[int(n[0])][int(n[1])] < minimun:
+                        matrix[int(n[0])][int(n[1])] = cost + value 
+                        if matrix[int(n[0])][int(n[1])] < minimun:
                             minimun = matrix[int(n[0])][int(n[1])]  
                             col = int(n[1])
+                if destiny == int(n[1]):
+                    minimun = matrix[int(n[0])][int(n[1])]  
+                    col = int(n[1])
+                    break;
     # Set new current node
     old_node = current_node
     minimun_path.append(current_node)

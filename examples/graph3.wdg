@@ -2,7 +2,7 @@
 // Structure:
 // First line: origin destiny
 // (node-1)(space)(node-2)(space)(distance)
-1 8
+4 3
 1 2 2
 1 4 4
 2 3 6
