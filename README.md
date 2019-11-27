@@ -7,7 +7,7 @@
 ### Running
 
 ```
-python src/prim.py examples/graph1.wug
+python src/djikstra.py examples/graph1.wug
 ```
 
 ### Weighted Directed Graph

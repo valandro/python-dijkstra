@@ -60,7 +60,6 @@ for i in range(len(graph)):
                     break;
             else:
                 # If isn't the origin node, then look back to see if the current cost is smaller than the previous
-                print("-- entrou else --", cost , value ,'n', n[1], value, minimun_path)
                 for old_minimun_node in minimun_path:
                     if matrix[old_minimun_node][int(n[1])] <= cost:
                         print("-- entrou --", old_minimun_node)
